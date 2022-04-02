@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head layout:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title layout:fragment="title"></title>
+</head>
+<body>
+
+	<div th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" th:href="@{/}">Employee Manager</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto mr-5 space-x-4">
+						<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+						
+						<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+		</nav>
+	</div>
+	
+	<div th:fragment="menu">
+		<aside class="col-md-3">
+			
+		</aside>
+	</div>
+	
+	<div layout:fragment="content">
+		<p>content goes here...</p>
+	</div>
+
+	<div th:fragment="footer" class="text-center footer" >
+		<p class= "text-italic mt-3">&copy; Jayhmz10@gmail.com 2022</p>
+	</div>
+
+
+
+
+</body>
+</html>

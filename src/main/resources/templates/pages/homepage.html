@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/app}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management App</title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+<link th:rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<div th:replace="layout/app :: header"></div>
+
+
+	<div layout:fragment="content">
+		<div class="container mt-3">
+			<div class="row">
+				<div class="col-md-3">
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary my-2"
+						data-toggle="modal" data-target="#employeemodal">Add New</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="employeemodal" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Create New</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form th:action="@{/create-employee}" th:object="${employee}"
+										method="POST">
+										<div class="form-group">
+											<label for="firstname">First Name</label> <input type="text"
+												class="form-control" id="firstname" name="firstname"
+												th:field="*{firstname}" aria-describedby="firstnameHelp"
+												placeholder="Enter Firstname">
+										</div>
+										<div class="form-group">
+											<label for="lastname">Last Name</label> <input type="text"
+												class="form-control" id="lastname" th:field="*{lastname}"
+												aria-describedby="lastnameHelp" placeholder="Enter Lastname">
+										</div>
+										<div class="form-group">
+											<label for="email">Email</label> <input type="email"
+												class="form-control" id="email" th:field="*{email}"
+												aria-describedby="EmailHelp" placeholder="Enter Email">
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Create
+												Employee</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">S/N</th>
+						<th scope="col">First Name</th>
+						<th scope="col">Last Name</th>
+						<th scope="col">Email Handle</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="employee, iterationStatus : ${employees}">
+						<th scope="row" th:text="${iterationStatus.count}"></th>
+						<td th:text="${employee.firstname}"></td>
+						<td th:text="${employee.lastname}"></td>
+						<td th:text="${employee.email}"></td>
+						<td>
+							<div class="d-block justify-content-center">
+								<a th:href="@{/employee/edit/{id}(id= ${employee.id})}"
+									class="btn btn-primary">Edit</a> <a
+									th:href="@{/delete-employee/{id}(id= ${employee.id})}"
+									class="btn btn-danger">Delete</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div th:replace="layout/app :: footer"></div>
+
+
+
+
+
+
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
