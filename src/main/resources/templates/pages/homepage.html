@@ -89,7 +89,7 @@
 								<a th:href="@{/employee/edit/{id}(id= ${employee.id})}"
 									class="btn btn-primary">Edit</a> <a
 									th:href="@{/delete-employee/{id}(id= ${employee.id})}"
-									class="btn btn-danger">Delete</a>
+									class="btn btn-danger" onclick="if(!(confirm('Confirm delete'))) return false">Delete</a>
 							</div>
 						</td>
 					</tr>
